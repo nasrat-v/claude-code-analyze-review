@@ -1,0 +1,15 @@
+{
+  "name": "claude-code-analyze-review",
+  "owner": {
+    "name": "nasrat-v"
+  },
+  "plugins": [
+    {
+      "name": "claude-code-analyze-review",
+      "source": ".",
+      "description": "/analyze-review command — triage code review feedback into FIX / IGNORE / DISCUSS with reasoning.",
+      "version": "0.1.0",
+      "category": "code-review"
+    }
+  ]
+}

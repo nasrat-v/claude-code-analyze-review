@@ -1,0 +1,17 @@
+{
+  "name": "claude-code-analyze-review",
+  "version": "0.1.0",
+  "description": "/analyze-review command — read a code review comment and recommend FIX, IGNORE, or DISCUSS with short reasoning. No implementation.",
+  "author": {
+    "name": "Valentin Nasraty"
+  },
+  "homepage": "https://github.com/nasrat-v/claude-code-analyze-review",
+  "license": "MIT",
+  "keywords": [
+    "claude-code",
+    "plugin",
+    "code-review",
+    "pull-request",
+    "triage"
+  ]
+}
