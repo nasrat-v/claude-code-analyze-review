@@ -7,8 +7,8 @@
     {
       "name": "claude-code-analyze-review",
       "source": {
-        "source": "github",
-        "repo": "nasrat-v/claude-code-analyze-review"
+        "source": "url",
+        "url": "https://github.com/nasrat-v/claude-code-analyze-review.git"
       },
       "description": "/analyze-review command — triage code review feedback into FIX / IGNORE / DISCUSS with reasoning.",
       "version": "0.1.0",
