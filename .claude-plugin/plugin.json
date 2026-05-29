@@ -1,7 +1,7 @@
 {
-  "name": "claude-code-analyze-review",
+  "name": "review",
   "version": "0.1.0",
-  "description": "/analyze-review command — read a code review comment and recommend FIX, IGNORE, or DISCUSS with short reasoning. No implementation.",
+  "description": "/review:analyze command — read a code review comment and recommend FIX, IGNORE, or DISCUSS with short reasoning. No implementation.",
   "author": {
     "name": "Valentin Nasraty"
   },

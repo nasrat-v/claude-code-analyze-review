@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # claude-code-analyze-review — installer
-# Copies the /analyze-review command into ~/.claude/commands/ for user-wide use.
+# Copies the /analyze command into ~/.claude/commands/ for user-wide use.
 #
 # Usage:
 #   ./setup.sh              # install for current user
@@ -13,7 +13,7 @@
 set -euo pipefail
 
 REPO_RAW_URL="https://raw.githubusercontent.com/nasrat-v/claude-code-analyze-review/main"
-COMMAND_FILE="commands/analyze-review.md"
+COMMAND_FILE="commands/analyze.md"
 
 # ANSI colors
 GREEN='\033[0;32m'
@@ -49,7 +49,7 @@ if [[ "$MODE" == "user" ]]; then
 else
   TARGET_DIR="$(pwd)/.claude/commands"
 fi
-TARGET_FILE="$TARGET_DIR/analyze-review.md"
+TARGET_FILE="$TARGET_DIR/analyze.md"
 
 # Uninstall path
 if [[ "$ACTION" == "uninstall" ]]; then
@@ -63,7 +63,7 @@ if [[ "$ACTION" == "uninstall" ]]; then
 fi
 
 # Install path
-info "Installing /analyze-review into $TARGET_DIR"
+info "Installing /analyze into $TARGET_DIR"
 mkdir -p "$TARGET_DIR"
 
 # Prefer local file if running from a clone; otherwise curl from GitHub.
@@ -79,4 +79,4 @@ else
   info "Downloaded from $REPO_RAW_URL."
 fi
 
-info "Done. Open Claude Code and run: /analyze-review <review feedback>"
+info "Done. Open Claude Code and run: /analyze <review feedback>"

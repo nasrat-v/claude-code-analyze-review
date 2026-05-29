@@ -1,15 +1,17 @@
 # claude-code-analyze-review
 
-Claude Code `/analyze-review` plugin — triage code review feedback into a clear verdict (`FIX`, `IGNORE`, or `DISCUSS`) with short reasoning. **No implementation.** It tells you what to do; you decide whether to do it.
+Claude Code `/analyze` plugin — triage code review feedback into a clear verdict (`FIX`, `IGNORE`, or `DISCUSS`) with short reasoning. **No implementation.** It tells you what to do; you decide whether to do it.
 
 Designed for the moment a reviewer leaves a comment and you're not sure if it's a real bug, a style nit, or worth pushing back on. Paste the comment, get a verdict.
+
+> **Command name:** standalone install gives you `/analyze`. Installed as a plugin, Claude Code namespaces it as `/review:analyze` (plugin commands are always prefixed `pluginName:command` to avoid collisions). Same command, two names depending on install path.
 
 ---
 
 ## Example
 
 ```text
-> /analyze-review "Why aren't you handling the null case in parseUserId? Callers in auth.ts and session.ts will crash."
+> /analyze "Why aren't you handling the null case in parseUserId? Callers in auth.ts and session.ts will crash."
 
 Verdict: FIX
 
@@ -24,12 +26,12 @@ Suggested change: tighten parseUserId's return type and add null guards at the t
 
 ---
 
-## What `/analyze-review` accepts
+## What it accepts
 
-- **Pasted review text** — `/analyze-review "the reviewer said X..."`
-- **PR URL or number** — `/analyze-review #482` (pulls comments via `gh pr view`)
-- **File path with line** — `/analyze-review src/auth.ts:88` (reads the code under discussion)
-- **Free-form description** — `/analyze-review "Alice said our retry logic should be a shared helper"`
+- **Pasted review text** — `/analyze "the reviewer said X..."`
+- **PR URL or number** — `/analyze #482` (pulls comments via `gh pr view`)
+- **File path with line** — `/analyze src/auth.ts:88` (reads the code under discussion)
+- **Free-form description** — `/analyze "Alice said our retry logic should be a shared helper"`
 
 The three verdicts:
 
@@ -47,7 +49,7 @@ Three install options. Pick whichever fits your workflow.
 
 ### Option 1 — One-line install (fastest)
 
-Installs only the `/analyze-review` command into `~/.claude/commands/`. No plugin, no clone.
+Installs only the `/analyze` command into `~/.claude/commands/`. No plugin, no clone. Invoke as `/analyze`.
 
 ```bash
 curl -fsSL https://raw.githubusercontent.com/nasrat-v/claude-code-analyze-review/main/setup.sh | bash
@@ -65,17 +67,17 @@ Inside Claude Code:
 
 ```text
 /plugin marketplace add nasrat-v/claude-code-analyze-review
-/plugin install claude-code-analyze-review@claude-code-analyze-review
+/plugin install review@claude-code-analyze-review
 ```
 
-Cleanest path if you already use `/plugin` to manage other extensions — updates, uninstalls, and listing all flow through the same command.
+Invoke as `/review:analyze`. Cleanest path if you already use `/plugin` to manage other extensions — updates, uninstalls, and listing all flow through the same command.
 
 ### Option 3 — Manual clone
 
 ```bash
 git clone https://github.com/nasrat-v/claude-code-analyze-review.git
 cd claude-code-analyze-review
-./setup.sh             # installs to ~/.claude/commands/
+./setup.sh             # installs to ~/.claude/commands/ as /analyze
 # or
 ./setup.sh --project   # installs to ./.claude/commands/ in current repo
 ```
@@ -84,13 +86,13 @@ cd claude-code-analyze-review
 
 ## Verifying the install
 
-Open Claude Code and type `/` — you should see `/analyze-review` in the command list. Then try:
+Open Claude Code and type `/` — you should see `/analyze` (standalone) or `/review:analyze` (plugin) in the command list. Then try:
 
 ```text
-/analyze-review "we should rename all our variables to camelCase for consistency"
+/analyze "we should rename all our variables to camelCase for consistency"
 ```
 
-You should get a `FIX | IGNORE | DISCUSS` verdict with 3–6 bullet points of reasoning. If you get a code change instead of a verdict, the command file didn't load — check `~/.claude/commands/analyze-review.md` exists.
+You should get a `FIX | IGNORE | DISCUSS` verdict with 3–6 bullet points of reasoning. If you get a code change instead of a verdict, the command file didn't load — check `~/.claude/commands/analyze.md` exists (standalone install).
 
 ---
 
@@ -98,14 +100,14 @@ You should get a `FIX | IGNORE | DISCUSS` verdict with 3–6 bullet points of re
 
 **Plugin install:**
 ```text
-/plugin uninstall claude-code-analyze-review
+/plugin uninstall review
 ```
 
 **Standalone install:**
 ```bash
 ./setup.sh --uninstall
 # or just:
-rm ~/.claude/commands/analyze-review.md
+rm ~/.claude/commands/analyze.md
 ```
 
 ---
@@ -127,13 +129,13 @@ The value is the constraint. Loosen it and you get the same wishy-washy "well, i
 
 ## Pairs well with
 
-- [`/explain`](https://github.com/nasrat-v/claude-code-explain) — plain-English summaries of code or plans. Use `/explain` to understand what a reviewer is pointing at, then `/analyze-review` to decide what to do about it.
+- [`/explain`](https://github.com/nasrat-v/claude-code-explain) — plain-English summaries of code or plans. Use `/explain` to understand what a reviewer is pointing at, then `/analyze` to decide what to do about it.
 
 ---
 
 ## Contributing
 
-PRs welcome. The command lives in [`commands/analyze-review.md`](commands/analyze-review.md) — tweak the rules, add example pairs, or refine the output format. If you change behavior, update the example in this README so users see the new shape.
+PRs welcome. The command lives in [`commands/analyze.md`](commands/analyze.md) — tweak the rules, add example pairs, or refine the output format. If you change behavior, update the example in this README so users see the new shape.
 
 ---
 

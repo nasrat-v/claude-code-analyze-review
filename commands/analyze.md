@@ -3,7 +3,7 @@ description: Analyze a code review comment and recommend fix / ignore / discuss 
 argument-hint: <review comment, PR feedback, or reviewer suggestion — paste text, file path, or PR URL>
 ---
 
-# /analyze-review
+# /analyze
 
 Your job: read the review feedback in `$ARGUMENTS` and recommend whether to act on it. **Do not implement the change.** Output is a verdict plus the reasoning behind it.
 
